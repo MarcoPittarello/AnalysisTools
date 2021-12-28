@@ -11,6 +11,7 @@
 #' @param coordinate.name a vector with listed the names of the column reporting the coordinates.
 #' Default is NULL.
 #' @return plots for graphical check of model
+#' @import tidyverse, ape, vegan, geoR
 #' @examples 
 #' @details  
 #' @references
@@ -27,7 +28,7 @@ explanatory.var<-c("TREATMENT","YEAR")
 coordinate.name<-c("X","Y")
 '
 
-model_assumptions<-function(model,residuals.model,database.model,response.var,
+modelCheck_plots<-function(model,residuals.model,database.model,response.var,
                             explanatory.var,coordinate.name=NULL){
   db.check1<-data.frame(
     fitted= fitted(model),
