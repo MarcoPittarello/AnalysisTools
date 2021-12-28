@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of AnalysisTools is to support data analysis
+The goal of AnalysisTools is to support data analysis ( still to do)
 
 ## Installation
 
