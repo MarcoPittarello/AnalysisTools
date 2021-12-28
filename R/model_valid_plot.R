@@ -12,9 +12,9 @@
 #' Default is NULL.
 #' @return plots for graphical check of model
 #' @import tidyverse, ape, vegan, geoR
-#' @examples 
-#' @details  
-#' @references
+#' @examples xx
+#' @details  xx
+#' @references xx
 #' @export
 
 modelCheck_plots<-function(model,residuals.model,database.model,response.var,
