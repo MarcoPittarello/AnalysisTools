@@ -1,6 +1,6 @@
 #' Validation plots for models: lm, glm, glmm, gam,gamm
 #'
-#' @description 
+#' @description xx
 #' @param model a model object, e.g. lm, glm, lme, glmmTMB, gam, lmer, etc
 #' @param residuals.model e.g. residuals(model,type ="pearson") . Any kind of "residuals" 
 #' function able to extract residuals from a model
@@ -11,22 +11,12 @@
 #' @param coordinate.name a vector with listed the names of the column reporting the coordinates.
 #' Default is NULL.
 #' @return plots for graphical check of model
-#' @import tidyverse, ape, vegan, geoR
-#' @examples 
-#' @details  
-#' @references
+#' @import tidyverse ape vegan geoR ggpubr
+#' @examples xx
+#' @details  xx
+#' @references xx
 #' @export
 
-
-
-'model<-lm.vp
-residuals.model<-residuals(model,residuals.type)
-#residuals.type<-"pearson"#"working", "response", "deviance", "pearson", "partial"
-database.model<-db.glm
-response.var<-"VP"
-explanatory.var<-c("TREATMENT","YEAR")
-coordinate.name<-c("X","Y")
-'
 
 modelCheck_plots<-function(model,residuals.model,database.model,response.var,
                             explanatory.var,coordinate.name=NULL){
