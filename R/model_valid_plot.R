@@ -1,13 +1,16 @@
 #' Validation plots for models: lm, glm, glmm, gam,gamm
 #'
 #' @description 
-#' @param model 
-#' @param residuals.model
-#' @param database.model
-#' @param response.var 
-#' @param explanatory.var
-#' @param coordinate.name
-#' @return 
+#' @param model a model object, e.g. lm, glm, lme, glmmTMB, gam, lmer, etc
+#' @param residuals.model e.g. residuals(model,type ="pearson") . Any kind of "residuals" 
+#' function able to extract residuals from a model
+#' @param database.model a data.frame used as data input in the model
+#' @param response.var the name of response variable between quotes, e.g. "Y"
+#' @param explanatory.var a vector with listed the explanatory variables used in the model, e.g.
+#' c("X1","X2","X3")
+#' @param coordinate.name a vector with listed the names of the column reporting the coordinates.
+#' Default is NULL.
+#' @return plots for graphical check of model
 #' @examples 
 #' @details  
 #' @references
