@@ -11,7 +11,7 @@
 #' @param coordinate.name a vector with listed the names of the column reporting the coordinates.
 #' Default is NULL.
 #' @return plots for graphical check of model
-#' @import tidyverse ape vegan geoR ggpubr
+#' @import tidyverse ape vegan geoR ggpubr ggplot2
 #' @examples xx
 #' @details  xx
 #' @references xx
@@ -38,12 +38,13 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
     theme(panel.background = element_blank())+
     ylab("Sample Quantiles")+
     xlab("Theoretical Quantiles")+
-    ggtitle("Normal Q-Q Plot")
+    ggtitle("Normal Q-Q Plot")+
+    labs(caption = model$call)
   
   #heterogeneity
   het<-ggplot(db.check,aes(x = fitted,y=residuals))+
     geom_point(shape = 1, colour = "grey40", fill = "white", size = 1, stroke = 0.5)+ 
-    geom_smooth(method = "loess")+
+    geom_smooth(method = "lm")+
     theme(axis.line = element_line(colour = "black"))+
     theme(panel.background = element_blank())+
     ylab("Residuals")+
@@ -55,7 +56,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
   
   resp.vs.fitt<-ggplot(db.check,aes(x = fitted,y=y))+
     geom_point(shape = 1, colour = "grey40", fill = "white", size = 1, stroke = 0.5)+
-    geom_smooth(method = "loess")+
+    geom_smooth(method = "lm")+
     theme(axis.line = element_line(colour = "black"))+
     theme(panel.background = element_blank())+
     ylab("Response")+
@@ -71,7 +72,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
     if (is.numeric(database.model[,i])){
       
       i.list[[i]]<-ggplot(db.check,aes_string(x = "residuals",y=i))+
-        geom_point(shape=1)+geom_smooth(method = "loess")+
+        geom_point(shape=1)+geom_smooth(method = "lm")+
         theme(axis.line = element_line(colour = "black"))+
         theme(panel.background = element_blank())+
         ylab(noquote(i))+
