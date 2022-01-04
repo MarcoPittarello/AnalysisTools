@@ -3,6 +3,8 @@
 export(modelCheck_plots)
 import(ape)
 import(geoR)
+import(ggplot2)
 import(ggpubr)
+import(stringr)
 import(tidyverse)
 import(vegan)

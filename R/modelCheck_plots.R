@@ -11,7 +11,7 @@
 #' @param coordinate.name a vector with listed the names of the column reporting the coordinates.
 #' Default is NULL.
 #' @return plots for graphical check of model
-#' @import tidyverse ape vegan geoR ggpubr ggplot2
+#' @import tidyverse ape vegan geoR ggpubr ggplot2 stringr
 #' @examples xx
 #' @details  xx
 #' @references xx
@@ -22,7 +22,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
                             explanatory.var,coordinate.name=NULL){
   db.check1<-data.frame(
     fitted= fitted(model),
-    residuals=residuals.model
+    residuals1=residuals.model
   )
   db.check<-cbind(db.check1,
                   database.model[,c(explanatory.var)],
@@ -30,19 +30,25 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
                   database.model[,paste0(response.var,collapse = "'")])
   colnames(db.check)[ncol(db.check)]<-"y"
   
+  my_string <- deparse(substitute(model))
+
   #normality of residuals
-  res<-qplot(sample = residuals, data = db.check)+
+  res<-qplot(sample = residuals1, data = db.check)+
     stat_qq_line()+
     stat_qq() +
     theme(axis.line = element_line(colour = "black"))+
     theme(panel.background = element_blank())+
     ylab("Sample Quantiles")+
     xlab("Theoretical Quantiles")+
-    ggtitle("Normal Q-Q Plot")+
-    labs(caption = model$call)
+    #ggtitle(paste(my_string,"Normal Q-Q Plot",sep=" - "))+
+    labs(title = paste("model: ",my_string),
+         subtitle = "Normal Q-Q Plot")+
+    theme(plot.title=element_text(size=12, hjust=0.0, face="bold", color="Red"))+
+    theme(plot.subtitle=element_text(size=12, hjust=0.0, face="bold",color="Black"))
+  
   
   #heterogeneity
-  het<-ggplot(db.check,aes(x = fitted,y=residuals))+
+  het<-ggplot(db.check,aes(x = fitted,y=residuals1))+
     geom_point(shape = 1, colour = "grey40", fill = "white", size = 1, stroke = 0.5)+ 
     geom_smooth(method = "lm")+
     theme(axis.line = element_line(colour = "black"))+
@@ -71,7 +77,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
   for (i in levels){
     if (is.numeric(database.model[,i])){
       
-      i.list[[i]]<-ggplot(db.check,aes_string(x = "residuals",y=i))+
+      i.list[[i]]<-ggplot(db.check,aes_string(x = "residuals1",y=i))+
         geom_point(shape=1)+geom_smooth(method = "lm")+
         theme(axis.line = element_line(colour = "black"))+
         theme(panel.background = element_blank())+
@@ -81,7 +87,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
       
     }
     else {
-      i.list[[i]]<-ggplot(db.check,aes_string(x = "residuals",y=i))+
+      i.list[[i]]<-ggplot(db.check,aes_string(x = "residuals1",y=i))+
         geom_boxplot()+ 
         theme(axis.line = element_line(colour = "black"))+
         theme(panel.background = element_blank())+
