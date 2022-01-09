@@ -75,7 +75,9 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
   levels<-unique(explanatory.var)
   
   for (i in levels){
-    if (is.numeric(database.model[,i])){
+    obj<-(data.frame(database.model[, i]))
+    colnames(obj)[1]<-"var"
+    if (is.numeric(obj$var)){
       
       i.list[[i]]<-ggplot(db.check,aes_string(x = "residuals1",y=i))+
         geom_point(shape=1)+geom_smooth(method = "lm")+
