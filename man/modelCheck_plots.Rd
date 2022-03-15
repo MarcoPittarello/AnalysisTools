@@ -16,8 +16,7 @@ modelCheck_plots(
 \arguments{
 \item{model}{a model object, e.g. lm, glm, lme, glmmTMB, gam, lmer, etc}
 
-\item{residuals.model}{e.g. residuals(model,type ="pearson") . Any kind of "residuals"
-function able to extract residuals from a model}
+\item{residuals.model}{e.g. Any kind of "residuals" function able to extract residuals from a modelresiduals(model,type ="pearson")}
 
 \item{database.model}{a data.frame used as data input in the model}
 

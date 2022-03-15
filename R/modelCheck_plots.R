@@ -2,8 +2,7 @@
 #'
 #' @description xx
 #' @param model a model object, e.g. lm, glm, lme, glmmTMB, gam, lmer, etc
-#' @param residuals.model e.g. residuals(model,type ="pearson") . Any kind of "residuals" 
-#' function able to extract residuals from a model
+#' @param residuals.model e.g. Any kind of "residuals" function able to extract residuals from a modelresiduals(model,type ="pearson")
 #' @param database.model a data.frame used as data input in the model
 #' @param response.var the name of response variable between quotes, e.g. "Y"
 #' @param explanatory.var a vector with listed the explanatory variables used in the model, e.g.
@@ -117,7 +116,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
     
     geodat <- geoR::as.geodata(data.frame(newdat$x, newdat$y
                                           ,residuals.model))
-    geodat.v1 <- variog(geodat, uvec=1:1000, max.dist=10000, option='bin')
+    geodat.v1 <- variog(geodat)
     
     vario.plot<-data.frame(distance=geodat.v1$u,semivariance=geodat.v1$v)
     variog<-ggplot(vario.plot,aes(x=distance,y=semivariance))+geom_point()+

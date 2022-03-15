@@ -4,12 +4,12 @@
 \name{AnalysisTools-package}
 \alias{AnalysisTools}
 \alias{AnalysisTools-package}
-\title{AnalysisTools: What the Package Does (One Line, Title Case)}
+\title{AnalysisTools: A set of support tools for data analysis}
 \description{
 What the package does (one paragraph).
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Marco Pittarello \email{marco.pittarello1987@gmail.com} (\href{https://orcid.org/0000-0001-6748-8790}{ORCID})
 
 }
 \keyword{internal}
