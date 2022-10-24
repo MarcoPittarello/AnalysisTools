@@ -100,7 +100,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
   }
   
   
-  if (length(coordinate.name)>0){
+  if (is.null(coordinate.name)==FALSE){
     ## spatial autocorrelation
     newdat<-cbind(residuals.model,
                   database.model[,c(coordinate.name)])
