@@ -9,6 +9,7 @@
 #' c("X1","X2","X3")
 #' @param coordinate.name a vector with listed the names of the column reporting the coordinates.
 #' Default is NULL.
+#' @param plot.title String with plot title. Default is the model object name
 #' @return plots for graphical check of model
 #' @import tidyverse ape vegan geoR ggpubr ggplot2 stringr
 #' @examples xx
@@ -18,7 +19,7 @@
 
 
 modelCheck_plots<-function(model,residuals.model,database.model,response.var,
-                            explanatory.var,coordinate.name=NULL){
+                            explanatory.var,coordinate.name=NULL,plot.title=NULL){
   db.check1<-data.frame(
     fitted= fitted(model),
     residuals1=residuals.model
@@ -29,8 +30,12 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
                   database.model[,paste0(response.var,collapse = "'")])
   colnames(db.check)[ncol(db.check)]<-"y"
   
-  my_string <- deparse(substitute(model))
-
+  if(is.null(plot.title)){
+    my_string <- deparse(substitute(model))
+  }else{
+    my_string<-plot.title
+  }
+  
   #normality of residuals
   res<-qplot(sample = residuals1, data = db.check)+
     stat_qq_line()+
