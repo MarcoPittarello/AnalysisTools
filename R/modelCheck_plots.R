@@ -29,8 +29,12 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
                   database.model[,paste0(response.var,collapse = "'")])
   colnames(db.check)[ncol(db.check)]<-"y"
   
-  my_string <- deparse(substitute(model))
-
+  if(is.null(plot.title)){
+    my_string <- deparse(substitute(model))
+  }else{
+    my_string<-plot.title
+  }
+  
   #normality of residuals
   res<-qplot(sample = residuals1, data = db.check)+
     stat_qq_line()+
