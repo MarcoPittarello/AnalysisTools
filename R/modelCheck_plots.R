@@ -24,7 +24,7 @@ modelCheck_plots<-function(model,residuals.model,database.model,response.var,
     residuals1=residuals.model
   )
   db.check<-cbind(db.check1,
-                  database.model[,c(explanatory.var)],
+                  data.frame(database.model[,c(explanatory.var),drop=F]),
                   database.model[,c(coordinate.name)],
                   database.model[,paste0(response.var,collapse = "'")])
   colnames(db.check)[ncol(db.check)]<-"y"
